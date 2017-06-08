@@ -30,6 +30,7 @@ before_install:
 
 install:
   - npm install
+  - node -r babel-register ./scripts/install.js
   - npm run test
 
 script: node -r babel-register ./scripts/publish-github-current.js

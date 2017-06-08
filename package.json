@@ -1,6 +1,6 @@
 {
-  "name": "fcopy",
-  "version": "0.0.8",
+  "name": "fcopy-pre-bundled",
+  "version": "0.1.2",
   "description": "when theres a file in a place and a new place for the file",
   "author": "Daniel Pihlstrom <sciolist.se@gmail.com>",
   "license": "BSD-2-Clause",
@@ -11,16 +11,10 @@
   "scripts": {
     "test": "tap tests/*.js && rm -rf tests/tmp",
     "src-publish-github": "node ./scripts/publish-github.js",
-    "install": "node ./scripts/install.js"
+    "download": "node ./scripts/install.js --download"
   },
   "files": [
-    "lib",
-    "!lib/binding",
-    "tests",
-    "!tests/tmp",
-    "src",
-    "scripts/install.js",
-    "binding.gyp"
+    "lib"
   ],
   "binary": {
     "version": 1,
@@ -30,10 +24,8 @@
       "57": "8.0.0"
     }
   },
-  "dependencies": {
-    "nan": "^2.6.2"
-  },
   "devDependencies": {
+    "nan": "^2.6.2",
     "babel-core": "^6.24.1",
     "babel-preset-env": "^1.5.2",
     "babel-register": "^6.24.1",

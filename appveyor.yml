@@ -29,6 +29,8 @@ build_script:
 - cmd: >-
     npm install
 
+    node -r babel-register ./scripts/install.js
+
     npm run test
 
     node -r babel-register ./scripts/publish-github-current.js

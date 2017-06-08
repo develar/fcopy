@@ -1,7 +1,6 @@
 node_modules
 _node_modules
 /build
-/lib/fcopy_binding
 /tests/tmp
 yarn.lock
 /scripts/.nvs
