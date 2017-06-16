@@ -1,6 +1,6 @@
 'use strict';
-process.env.FCOPY_NOFALLBACK=1;
 const fcopy = require('..');
+fcopy.setCopier(require('../lib/copiers/fallback'));
 const t = require('tap');
 const fs = require('fs');
 const path = require('path');
@@ -12,13 +12,12 @@ if (!fs.existsSync(__dirname + '/tmp')) {
 t.test('copying file succeeds', function test(callback) {
     const F1 = __dirname + '/tmp/' + PREFIX + '-1';
     const F2 = __dirname + '/tmp/' + PREFIX + '-2';
-    const CONTENTS = 'world';
 
-    fs.writeFileSync(F1, CONTENTS);
-    if (fs.existsSync(F2)) { fs.unlinkSync(F2); }
+    fs.writeFileSync(F1, '');
+    if (fs.existsSync(F2)) { fs.rmdirSync(F2); }
+    fs.mkdirSync(F2);
 
-    return fcopy(F1, F2, {mode: 0o666}).then(() => {
-        const found = fs.readFileSync(F2).toString();
-        t.ok(found, CONTENTS);
-    });
+    return fcopy(F1, F1)
+        .then(() => t.fail('expected call to fail'))
+        .catch(ex => t.ok(ex.code, 'EISDIR'));
 });

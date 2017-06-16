@@ -1,6 +1,6 @@
 'use strict';
-process.env.FCOPY_NOFALLBACK=1;
 const fcopy = require('..');
+fcopy.setCopier(require('../lib/copiers/fallback'));
 const t = require('tap');
 const fs = require('fs');
 const path = require('path');
